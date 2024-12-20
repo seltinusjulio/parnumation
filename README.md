@@ -27,9 +27,6 @@ Numbered notation has long been a valuable system for music transcription, parti
 
 Contributions are welcome! If you would like to collaborate or suggest improvements, feel free to submit issues or pull requests. Let’s enhance Parnumation together.
 
-## License
-
-This project is licensed under [GNU General Public License (GPL v3)]. Please see the `LICENSE` file for more details.
 
 ---
 
