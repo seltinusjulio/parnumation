@@ -20,7 +20,7 @@ import QtQuick 2.2
 import MuseScore 3.0
 
 MuseScore {
-   version: "4.4"
+   version: "4.5"
    description: "This plugin numbers notes using Parnumation font"
    menuPath: "Plugins.Notes." + "Parnumation"
 
@@ -59,21 +59,21 @@ MuseScore {
          if (typeof notes[i].tpc === "undefined") // like for grace notes ?!?
             return
          switch (notes[i].tpc) {
-            case -1: name = "♭♭4"; // F♭♭
-            case  0: name = "♭♭1"; // C♭♭
-            case  1: name = "♭♭5"; // G♭♭
-            case  2: name = "♭♭2"; // D♭♭
-            case  3: name = "♭♭6"; // A♭♭
-            case  4: name = "♭♭3"; // E♭♭
-            case  5: name = "♭♭7"; // B♭♭
+            case -1: name = "3"; // F♭♭
+            case  0: name = "7\"; // C♭♭
+            case  1: name = "4"; // G♭♭
+            case  2: name = "1"; // D♭♭
+            case  3: name = "5"; // A♭♭
+            case  4: name = "2"; // E♭♭
+            case  5: name = "6"; // B♭♭
 
-            case  6: name = "♭4"; // F♭
-            case  7: name = "♭1"; // C♭
-            case  8: name = "♭5"; // G♭
-            case  9: name = "♭2"; // D♭
-            case 10: name = "♭6"; // A♭
-            case 11: name = "♭4"; // E♭
-            case 12: name = "♭7"; // B♭
+            case  6: name = "3"; // F♭
+            case  7: name = "7"; // C♭
+            case  8: name = "4/"; // G♭
+            case  9: name = "1/"; // D♭
+            case 10: name = "5/"; // A♭
+            case 11: name = "2/"; // E♭
+            case 12: name = "7\"; // B♭
 
             case 13: name = "4"; // F
             case 14: name = "1"; // C
@@ -83,21 +83,21 @@ MuseScore {
             case 18: name = "3"; // E
             case 19: name = "7"; // B
 
-            case 20: name = "♯4"; // F♯
-            case 21: name = "♯1"; // C♯
-            case 22: name = "♯5"; // G♯
-            case 23: name = "♯2"; // D♯
-            case 24: name = "♯6"; // A♯
-            case 25: name = "♯3"; // E♯
-            case 26: name = "♯7"; // B♯
+            case 20: name = "4/"; // F♯
+            case 21: name = "1/"; // C♯
+            case 22: name = "5/"; // G♯
+            case 23: name = "2/"; // D♯
+            case 24: name = "7\"; // A♯
+            case 25: name = "3/"; // E♯
+            case 26: name = "1"; // B♯
 
-            case 27: name = "♯♯4"; // F♯♯
-            case 28: name = "♯♯1"; // C♯♯
-            case 29: name = "♯♯5"; // G♯♯
-            case 30: name = "♯♯2"; // D♯♯
-            case 31: name = "♯♯6"; // A♯♯
-            case 32: name = "♯♯3"; // E♯♯
-            case 33: name = "♯♯7"; // B♯♯
+            case 27: name = "5"; // F♯♯
+            case 28: name = "2"; // C♯♯
+            case 29: name = "6"; // G♯♯
+            case 30: name = "3"; // D♯♯
+            case 31: name = "7"; // A♯♯
+            case 32: name = "4/"; // E♯♯
+            case 33: name = "1/"; // B♯♯
             default: name = qsTr("?")   + text.text;
             break;
          } // end switch tpc
