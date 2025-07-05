@@ -98,7 +98,7 @@ MuseScore {
             case 31: name = "♯♯6"; // A♯♯
             case 32: name = "♯♯3"; // E♯♯
             case 33: name = "♯♯7"; // B♯♯
-            default: name = qsTr("?")   + text.text; break;
+            default: name = qsTr("?")   + text.text;
             break;
          } // end switch tpc
 
