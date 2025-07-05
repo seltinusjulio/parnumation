@@ -2,7 +2,8 @@
 //  MuseScore
 //  Music Composition & Notation
 //
-//  Solmisasi Plugin (Note Names)
+//  Solmisasi for MuseScore (dimodifikasi dari Note Names Plugin)
+//  https://github.com/seltinusjulio/solmisasi-musescore
 //
 //  Copyright (C) 2012 Werner Schweer
 //  Copyright (C) 2013 - 2021 Joachim Schmitz
@@ -41,7 +42,7 @@ MuseScore {
 
    function nameChord (notes, text, small) {
       var sep = "\n";   // change to "," if you want them horizontally (anybody?)
-      var oct = "";
+      // var oct = "";
       var name;
       for (var i = 0; i < notes.length; i++) {
          if (!notes[i].visible)
@@ -95,52 +96,52 @@ MuseScore {
             default: name = qsTr("?")   + text.text; break;
          } // end switch tpc
 
-let octavePrefix = ""; // Variabel untuk menyimpan prefix oktaf (misalnya "a", "s", "9", "8")
-const currentPitch = notes[i].pitch; // Gunakan notes[i].pitch untuk menentukan oktaf MIDI
+         let octavePrefix = ""; // Variabel untuk menyimpan prefix oktaf (misalnya "a", "s", "9", "8")
+         const currentPitch = notes[i].pitch; // Gunakan notes[i].pitch untuk menentukan oktaf MIDI
 
-// MIDI Pitch (contoh, C4 = 60):
-// C0 = 12, C1 = 24, C2 = 36, C3 = 48, C4 = 60, C5 = 72, C6 = 84, C7 = 96, C8 = 108
+         // MIDI Pitch (contoh, C4 = 60):
+         // C0 = 12, C1 = 24, C2 = 36, C3 = 48, C4 = 60, C5 = 72, C6 = 84, C7 = 96, C8 = 108
 
-if (currentPitch >= 60 && currentPitch < 72) {
-  // Rentang untuk oktaf C4 (pitch 60 hingga 71)
-  // Sesuai pola: C4=1, D4=2, E4=3. Tidak ada prefix.
-  octavePrefix = ""; // Prefix kosong
-} else if (currentPitch >= 72 && currentPitch < 84) {
-  // Rentang untuk oktaf C5 (pitch 72 hingga 83)
-  // Sesuai pola: C5=a1, D5=a2, E5=a3. Prefix 'a'.
-  octavePrefix = "a";
-} else if (currentPitch >= 48 && currentPitch < 60) {
-  // Rentang untuk oktaf C3 (pitch 48 hingga 59)
-  // Sesuai pola: C3=s1, D3=s2, E3=s3. Prefix 's'.
-  octavePrefix = "s";
-} else if (currentPitch >= 84 && currentPitch < 96) {
-  // Rentang untuk oktaf C6 (pitch 84 hingga 95)
-  // Sesuai pola: C6=91, D6=92, E6=93. Prefix '9'.
-  octavePrefix = "9";
-} else if (currentPitch >= 36 && currentPitch < 48) {
-  // Rentang untuk oktaf C2 (pitch 36 hingga 47)
-  // Sesuai pola: C2=81, D2=82, E2=83. Prefix '8'.
-  octavePrefix = "8";
-} else {
-  // Untuk oktaf lain yang tidak secara eksplisit didefinisikan dalam pola Anda.
-  // Anda bisa memilih bagaimana menampilkannya:
-  // 1. Tidak menambahkan prefix sama sekali (hanya angka dasar not):
-  octavePrefix = "";
-  // 2. Menambahkan angka oktaf standar sebagai prefix (misal C1 -> 11, C0 -> 01):
-  //    octavePrefix = (Math.floor(currentPitch / 12) - 1).toString(); // Ini akan memberi prefix angka oktaf MIDI
-  // 3. Menambahkan '?' untuk menandai oktaf yang tidak dipetakan:
-  //    octavePrefix = "?";
-}
+         if (currentPitch >= 60 && currentPitch < 72) {
+           // Rentang untuk oktaf C4 (pitch 60 hingga 71)
+           // Sesuai pola: C4=1, D4=2, E4=3. Tidak ada prefix.
+           octavePrefix = ""; // Prefix kosong
+         } else if (currentPitch >= 72 && currentPitch < 84) {
+           // Rentang untuk oktaf C5 (pitch 72 hingga 83)
+           // Sesuai pola: C5=a1, D5=a2, E5=a3. Prefix 'a'.
+           octavePrefix = "a";
+         } else if (currentPitch >= 48 && currentPitch < 60) {
+           // Rentang untuk oktaf C3 (pitch 48 hingga 59)
+           // Sesuai pola: C3=s1, D3=s2, E3=s3. Prefix 's'.
+           octavePrefix = "s";
+         } else if (currentPitch >= 84 && currentPitch < 96) {
+           // Rentang untuk oktaf C6 (pitch 84 hingga 95)
+           // Sesuai pola: C6=91, D6=92, E6=93. Prefix '9'.
+           octavePrefix = "9";
+         } else if (currentPitch >= 36 && currentPitch < 48) {
+           // Rentang untuk oktaf C2 (pitch 36 hingga 47)
+           // Sesuai pola: C2=81, D2=82, E2=83. Prefix '8'.
+           octavePrefix = "8";
+         } else {
+           // Untuk oktaf lain yang tidak secara eksplisit didefinisikan dalam pola Anda.
+           // Anda bisa memilih bagaimana menampilkannya:
+           // 1. Tidak menambahkan prefix sama sekali (hanya angka dasar not):
+           //    octavePrefix = "";
+           // 2. Menambahkan angka oktaf standar sebagai prefix (misal C1 -> 11, C0 -> 01):
+           //    octavePrefix = (Math.floor(currentPitch / 12) - 1).toString(); // Ini akan memberi prefix angka oktaf MIDI
+           // 3. Menambahkan '?' untuk menandai oktaf yang tidak dipetakan:
+           octavePrefix = "?";
+         }
 
-// Gabungkan prefix oktaf dengan 'name' (representasi dasar not)
-// Sesuai pola: prefix + name
-const finalNoteRepresentation = octavePrefix + name;
+         // Gabungkan prefix oktaf dengan 'name' (representasi dasar not)
+         // Sesuai pola: prefix + name
+         const finalNoteRepresentation = octavePrefix + name;
 
-// Akhirnya, setel text.text dengan representasi not final.
-// Jika Anda memiliki 'text.text' yang lama dan ingin dipertahankan di akhir (seperti string konteks atau apa pun):
-// text.text = finalNoteRepresentation + text.text;
-// Jika 'text.text' hanya digunakan untuk hasil ini:
-text.text = finalNoteRepresentation;
+         // Akhirnya, setel text.text dengan representasi not final.
+         // Jika Anda memiliki 'text.text' yang lama dan ingin dipertahankan di akhir (seperti string konteks atau apa pun):
+         // text.text = finalNoteRepresentation + text.text;
+         // Jika 'text.text' hanya digunakan untuk hasil ini:
+         text.text = finalNoteRepresentation;
 
          // octave, middle C being C4
          //oct = (Math.floor(notes[i].pitch / 12) - 1)
