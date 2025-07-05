@@ -28,15 +28,15 @@ MuseScore {
    property real fontSizeMini: 0.7;
 
    // Add the font property
-   property var fontNoteNumbers : "Parnumation"
+   property var fontNoteNumbers : "Parnumation 3.1"
 
    id: noteNumbers
-   //4.4 title: "Note Numbers"
+   //4.4 title: "Parnumation"
    //4.4 categoryCode: "composing-arranging-tools"
    //4.4 thumbnailName: "parnumation.png"
    Component.onCompleted : {
       if (mscoreMajorVersion >= 4 && mscoreMinorVersion <= 3) {
-         noteNumbers.title = "Note Numbers"
+         noteNumbers.title = "Parnumation"
          noteNumbers.categoryCode = "composing-arranging-tools"
          noteNumbers.thumbnailName = "parnumation.png"
       }
