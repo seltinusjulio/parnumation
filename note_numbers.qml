@@ -25,10 +25,10 @@ MuseScore {
 
    // Small note name size is fraction of the full font size.
    property real fontSizeMini: 0.7;
-   [cite_start]// Tambahkan properti ini untuk nama font kustom [cite: 1]
-   property var customFontName: "Arial"; [cite_start]// Ganti "Arial" dengan nama font yang Anda inginkan [cite: 1]
+   // Tambahkan properti ini untuk nama font kustom
+   property var customFontName: "Arial"; // Ganti "Arial" dengan nama font default yang Anda inginkan
 
-   id: noteNumbers
+   id: noteNumbers // ID ini penting untuk mengakses properti dari fungsi lain
    //4.4 title: "Note Numbers"
    //4.4 categoryCode: "composing-arranging-tools"
    //4.4 thumbnailName: "note_names.png"
@@ -69,7 +69,7 @@ MuseScore {
                   case Note.F: oct = "F"; break;
                   case Note.G: oct = "G"; break;
                   case Note.A: oct = "A"; break;
-                  case Note.B: oct = "B"; break;
+                  case Note.B: oct = "7"; break;
                }
                // Numbers C=1, D=2, E=3, F=4, G=5, A=6, B=7
                switch (noteName) {
@@ -156,8 +156,8 @@ MuseScore {
             */
 
          }
-         [cite_start]// Tambahkan tag HTML font di sini, membungkus nama yang dihasilkan [cite: 1]
-         text.text = "<font face=\"" + customFontName + "\">" + name + "</font>" + text.text;
+         // KOREKSI: Akses customFontName melalui ID objek MuseScore (noteNumbers)
+         text.text = "<font face=\"" + noteNumbers.customFontName + "\">" + name + "</font>" + text.text;
       }
       if (small)
          text.fontSize *= fontSizeMini;
@@ -174,9 +174,9 @@ MuseScore {
             text.text = ""; // clear text, so the nameChord generates only for this grace note.
             nameChord(notes, text, small);
 
-            [cite_start]// Jika text.text tidak kosong, tambahkan tag font di sini untuk grace notes [cite: 1]
+            // KOREKSI: Akses customFontName melalui ID objek MuseScore (noteNumbers)
             if (text.text) {
-                text.text = "<font face=\"" + customFontName + "\">" + text.text + "</font>";
+                text.text = "<font face=\"" + noteNumbers.customFontName + "\">" + text.text + "</font>";
             }
 
             cursor.add(text); // Add current grace note text
@@ -249,9 +249,9 @@ MuseScore {
                   // Now handle the note names on the main chord...
                   var notes = cursor.element.notes;
                   nameChord(notes, text, false);
-                  [cite_start]// Tambahkan tag font di sini untuk not utama [cite: 1]
+                  // KOREKSI: Akses customFontName melalui ID objek MuseScore (noteNumbers)
                   if (text.text) { // Pastikan ada teks sebelum dimodifikasi
-                      text.text = "<font face=\"" + customFontName + "\">" + text.text + "</font>";
+                      text.text = "<font face=\"" + noteNumbers.customFontName + "\">" + text.text + "</font>";
                   }
 
                   if (text.text)
@@ -266,10 +266,11 @@ MuseScore {
 
                   // Finally process trailing grace notes if they exist...
                   text = renderGraceNoteNames(cursor, trailingFifo, text, true)
-               [cite_start]} else if (cursor.isRest) { // Tambahkan '0' untuk tanda istirahat [cite: 1]
+               } else if (cursor.isRest) { // Tambahkan '0' untuk tanda istirahat
                    var text = newElement(Element.STAFF_TEXT);
                    text.placement = Placement.BELOW; // Tempatkan di bawah tanda istirahat
-                   text.text = "<font face=\"" + customFontName + "\">0</font>"; [cite_start]// Tampilkan '0' dengan font kustom [cite: 1]
+                   // KOREKSI: Akses customFontName melalui ID objek MuseScore (noteNumbers)
+                   text.text = "<font face=\"" + noteNumbers.customFontName + "\">0</font>"; // Tampilkan '0' dengan font kustom
                    cursor.add(text);
                }
                cursor.next();
