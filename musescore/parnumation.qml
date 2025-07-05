@@ -2,12 +2,13 @@
 //  MuseScore
 //  Music Composition & Notation
 //
-//  Note Numbers Plugin (derived from the Note Names Plugin)
+//  Parnumation Plugin (derived from the Note Numbers Plugin)
 //
 //  Copyright (C) 2012 Werner Schweer
 //  Copyright (C) 2013 - 2024 Joachim Schmitz
 //  Copyright (C) 2014 Jörn Eichler
 //  Copyright (C) 2020 Johan Temmerman
+//  Copyright (C) 2025 Seltinus Julio
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License version 2
@@ -20,24 +21,24 @@ import MuseScore 3.0
 
 MuseScore {
    version: "4.4"
-   description: "This plugin numbers notes"
-   menuPath: "Plugins.Notes." + "Note Numbers" [cite: 311]
+   description: "This plugin numbers notes using Parnumation font"
+   menuPath: "Plugins.Notes." + "Parnumation" [cite: 311]
 
    // Small note name size is fraction of the full font size.
    property real fontSizeMini: 0.7; [cite: 312]
 
-   // Add the font property, similar to Jianpu
+   // Add the font property
    property var fontNoteNumbers : "Parnumation"
 
    id: noteNumbers
    //4.4 title: "Note Numbers"
    //4.4 categoryCode: "composing-arranging-tools"
-   //4.4 thumbnailName: "note_names.png"
+   //4.4 thumbnailName: "parnumation.png"
    Component.onCompleted : {
       if (mscoreMajorVersion >= 4 && mscoreMinorVersion <= 3) {
          noteNumbers.title = "Note Numbers"
          noteNumbers.categoryCode = "composing-arranging-tools"
-         noteNumbers.thumbnailName = "note_names.png"
+         noteNumbers.thumbnailName = "parnumation.png"
       }
    }
 
